@@ -9,8 +9,9 @@ Riemann sums for a given function. Riemann cannot currently accept function type
 because of conflicts with math parsing from user entries. It can calculate delta X and output necessary work to find the 
 area given upper and lower bounds.
 """
-class Riemann:
 
+
+class Riemann:
     def __init__(self, lower, upper, func, rec):
         self.lower = int(lower)
         self.upper = int(upper)
@@ -29,8 +30,8 @@ class Riemann:
         # print(*ctr, sep=') + ')
         fof_ctr = []
         for item in ctr:
-            fof_ctr.append('f({})'.format(item))
-        print(*fof_ctr, sep= ' + ')
+            fof_ctr.append("f({})".format(item))
+        print(*fof_ctr, sep=" + ")
 
     def rightsums(self):
         delta_x = (self.upper - self.lower) / self.rec
@@ -42,8 +43,8 @@ class Riemann:
             iteration += delta_x
         fof_ctr = []
         for item in ctr:
-            fof_ctr.append('f({})'.format(item))
-        print(*fof_ctr, sep=' + ')
+            fof_ctr.append("f({})".format(item))
+        print(*fof_ctr, sep=" + ")
 
     def midpointsums(self):
         delta_x = (self.upper - self.lower) / self.rec
@@ -59,26 +60,37 @@ class Riemann:
         mid_list = [ctr_left[i] + ctr_right[i] for i in range(len(ctr_left))]
         final_fof = []
         for item in mid_list:
-            final_fof.append('[f({}) / 2]'.format(item))
-        print(*final_fof, sep=' + ')
+            final_fof.append("[f({}) / 2]".format(item))
+        print(*final_fof, sep=" + ")
+
 
 # Create if statements to check for whatever sum the user wished to calculate: Left, Right, Midpoint, or Trapezoid.
 # Later make a dictionary with keywords that correspond to class functions
 def getvals():
-    print(f"{function_value.get(), lower_limit_value.get(), upper_limit_entry.get(), rectangles_value.get(), type_of.get()} ")
-    calculate = Riemann(lower_limit_value.get(), upper_limit_entry.get(), function_value.get(), rectangles_value.get())
-    if type_of.get() == 'Left':
+    print(
+        f"{function_value.get(), lower_limit_value.get(), upper_limit_entry.get(), rectangles_value.get(), type_of.get()} "
+    )
+    calculate = Riemann(
+        lower_limit_value.get(),
+        upper_limit_entry.get(),
+        function_value.get(),
+        rectangles_value.get(),
+    )
+    if type_of.get() == "Left":
         calculate.leftsums()
-    elif type_of.get() == 'Right':
+    elif type_of.get() == "Right":
         calculate.rightsums()
-    elif type_of.get() == 'Midpoint':
+    elif type_of.get() == "Midpoint":
         calculate.midpointsums()
-    elif type_of.get() == 'Trapezoid':
-        print('Coming soon...')
+    elif type_of.get() == "Trapezoid":
+        print("Coming soon...")
+
 
 root.geometry("500x250")
 # Heading
-Label(root, text="Riemann Sums", font="TimesNewRoman 16 bold", pady=15).grid(row=0, column=3)
+Label(root, text="Riemann Sums", font="TimesNewRoman 16 bold", pady=15).grid(
+    row=0, column=3
+)
 # Text for the form
 function = Label(root, text="Function")
 lower_limit = Label(root, text="Lower Limit")
